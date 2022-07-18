@@ -17,6 +17,7 @@ tr{
 }
 .menu{
     display: inherit;
+    position:fixed;
     background-color: black;
     height: 30px;
     width: 100%;
@@ -26,4 +27,40 @@ tr{
     width: 20%;
     background-color: black;
     color: rgb(203, 203, 203);
+}
+h1{
+    margin: 0px;
+}
+#nomDiv{
+    position: relative;
+    display: inline-block;
+}
+#infoDiv{
+    position: relative;
+    top: 0px;
+}
+p{
+    margin: 0px;
+}
+li{
+    margin: 0px;
+}
+ul{
+    margin: 0px;
+}
+.autour{
+    border: 1px black solid;
+    width: max-content;
+    display: inline-block;
+}
+#page{
+    position: relative;
+    top: 30px;
+    width: 100%;
+}
+#teamInfo{
+    display: inherit;
+    position: absolute;
+    right: 0px;
+    top: 0px;
 }

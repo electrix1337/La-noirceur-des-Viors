@@ -1,3 +1,6 @@
+body{
+    margin: 0px;
+}
 table{
     border-collapse: collapse;
 }
@@ -11,4 +14,16 @@ th{
 }
 tr{
     padding: 0px;
+}
+.menu{
+    display: inherit;
+    background-color: black;
+    height: 30px;
+    width: 100%;
+}
+.menu>select{
+    height: 100%;
+    width: 20%;
+    background-color: black;
+    color: rgb(203, 203, 203);
 }

@@ -1,3 +1,4 @@
+//made by William Bégin
 let joueurs = {
     'copy': {
         info: {

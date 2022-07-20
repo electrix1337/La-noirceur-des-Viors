@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La noirceur des Viors</title>
-    <link rel="stylesheet" href="https://electrix1337.github.io/La-noirceur-des-Viors/cs.css">
+    <link rel="stylesheet" href="cs.css">
     <script
         src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
@@ -21,10 +21,12 @@
         <div class="autour" id="info">
             <div id="nomDiv">
                 <h1 id="nom">nom:</h1>
+                <img src="https://cdn.discordapp.com/attachments/827288153273401384/998778982075994142/unknown.png" id="image">
             </div>
             <div id="infoDiv" Style="display: inline-block;">
                 <p id="PV">PV:</p>
                 <p id="PM">PM:</p>
+                <p id="age">age:</p>
             </div>
         </div>
         <div class="autour" id="teamInfo">
@@ -44,11 +46,9 @@
                     platine:
                 </li>
             </ul>
-            nourriture: <br>
-            <input type="textLabel">
-            <button type="button" id>
-                passer le temps
-            </button>
+            <p id="nourritureNormal">nourriture:</p>
+            <input type="textLabel" id="jourText">
+            <input type="button" id="passeTemp" value="passer le temps">
         </div>
         <table class="inventaire">
             <thead>
@@ -79,6 +79,6 @@
             </tbody>
         </table>
     </div>
-    <script type="text/javascript" src="https://electrix1337.github.io/La-noirceur-des-Viors/java.js"></script>
+    <script type="text/javascript" src="java.js"></script>
 </body>
 </html>

@@ -28,6 +28,8 @@ let joueurs = {
             age: "150",
             race: "elf",
             description: "",
+            image: "https://cdn.discordapp.com/attachments/827288153273401384/998778982075994142/unknown.png",
+            imageDimention: "1.17",
         },
         stats: {
             PV: "60/60",
@@ -48,10 +50,12 @@ let joueurs = {
 
     'LP': {//loui-philipe
         info: {
-            nom: "",
+            nom: "Balor' Godviir",
             age: "",
             race: "",
             description: "",
+            image: "https://cdn.discordapp.com/attachments/827288153273401384/999349448276713492/unknown.png",
+            imageDimention: "1.37",
         },
         stats: {
             PV: "",
@@ -71,26 +75,27 @@ let joueurs = {
 
     'M': {//mathis
         info: {
-            nom: "",
+            nom: "Eviis Maltiia",
             age: "",
-            race: "",
+            race: "elf",
             description: "",
+            image: "",
         },
         stats: {
-            PV: "",
-            PM: "",
+            PV: "60/60",
+            PM: "85/85",
         },
         chance: {
-            physique: "",
-            mental: "",
-            social: "",
+            physique: "60/100",
+            mental: "70/100",
+            social: "25/100",
         },
         inventaire: {
             base: {
                 argent: "",
                 nourriture: ""
             },
-            normal: [],
+            normal: ["Arc à double décochement;arme;2d6"],
             magique: [],
         }
     },
@@ -103,11 +108,15 @@ let team = {
         or: "",
     },
     nouriture: {
-        normal: "",
+        normal: "100",
     },
 }
 
-let PersoActuel = 'W'
+let regNombre = new RegExp("^(-|-[0-9]+|[0-9]+)$");
+//constantes
+let longeur = 200;
+
+let PersoActuel = 'W';
 let startLoopValue = -1;
 
 let listeJoueurs = $('#ListeJoueurs');
@@ -115,18 +124,31 @@ let listeJoueurs = $('#ListeJoueurs');
 //loop dans le dictionaire
 function loopDic(dic, inc, backKey) {
     inc += 1;
+    let imagePartiel  = "";
     for (let [key, value] of Object.entries(dic)) {
+
+        //trouve le personnage selectioné dans la liste
         if (inc == 0 && key == PersoActuel) {
-            console.log(key);
             loopDic(dic[key], inc, key);
+
+        //trouve les autre information a propos de ce personage
         } else if (inc != 0) {
-            console.log(key)
             if (typeof(value) == 'object') {
                 loopDic(dic[key], inc, key);
             } else {
-                let id = "#" + key
-                console.log(id);
-                $(id).html(key + ": " + value)
+                let id = "#" + key;
+                if (key == "image") {
+                    $(id).attr("src", value);
+                    imagePartiel = id;
+                } else if (key == "imageDimention") {
+                    let hauteur = longeur * key;
+                    var dimention = $(imagePartiel).css("width", longeur);
+                    dimention[1] = longeur;
+                    dimention[2] = hauteur;
+                    console.log("test");
+                } else {
+                    $(id).html(key + ": " + value);
+                }
             }
         }
     }
@@ -148,9 +170,34 @@ function CreateListe(dic) {
     });
 }
 
+function SetTeamGui() {
+    $("#nourritureNormal").html("nourriture: " + team.nouriture.normal + " jours");
+}
+
+function PasseTemp(e) {
+    team.nourriture.normal = team.nourriture.normal - $("#jourText").html()
+}
+
+function CheckNumber(e, text) {
+    console.log(text.val() + e.key);
+    if (!(regNombre.test(text.val() + e.key))) {
+        e.preventDefault()
+    }
+}
+
 $(document).ready(function(event) {
     //configure les informations
     CreateListe(joueurs);
     loopDic(joueurs, startLoopValue, "");
-    SetGui();
+    SetTeamGui();
+
+    //event
+    console.log("first");
+    $("#jourText").keypress(function(e) {
+        CheckNumber(e, $("#jourText"));
+    });
+    
+    $("#passeTemp").click(function(e) {
+        PasseTemp(e);
+    });
 });

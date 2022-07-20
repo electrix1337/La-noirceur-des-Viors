@@ -64,3 +64,8 @@ ul{
     right: 0px;
     top: 0px;
 }
+#imagePerso{
+    width: 200px;
+    height: 234px;
+    float: left;
+}
